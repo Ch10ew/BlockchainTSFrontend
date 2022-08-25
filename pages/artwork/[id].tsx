@@ -16,11 +16,10 @@ export default function Artwork() {
     `http://localhost:8000/artwork/${id}`,
     fetchJson
   );
-  const {
-    data: { data: transaction },
-  } = useSWR<any>(`http://localhost:8000/request/cert/${id}`, fetchJson);
-  console.log(transaction);
-  if (error) console.log(error);
+  const { data: transaction } = useSWR<any>(
+    `http://localhost:8000/request/cert/${id}`,
+    fetchJson
+  );
   return (
     <Layout>
       <Head>
@@ -47,7 +46,9 @@ export default function Artwork() {
           </div>
         </div>
       )}
-      {transaction && <Cert transaction={transaction} artwork={artwork}></Cert>}
+      {transaction && (
+        <Cert transaction={transaction.data} artwork={artwork}></Cert>
+      )}
     </Layout>
   );
 }
