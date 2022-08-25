@@ -23,6 +23,10 @@ export default function Home() {
                 <Link href="./artist/upload">
                     <a>(Temporary) Artist Upload page</a>
                 </Link>
+                <br />
+                <Link href="./requests">
+                    <a>(Temporary) Requests page</a>
+                </Link>
             </div>
         </Layout>
     );
