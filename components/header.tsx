@@ -1,11 +1,13 @@
 import { useAtom } from "jotai";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { userAtom } from "../context/userContext";
 import useUser from "../lib/useUser";
 import utilStyles from "../styles/utils.module.css";
 
 export default function Header() {
   const [user, setUser] = useAtom(userAtom);
+  const router = useRouter();
   console.log(user);
 
   return (
