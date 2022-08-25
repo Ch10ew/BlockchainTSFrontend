@@ -16,8 +16,6 @@ export default function Signup() {
 
   const router = useRouter();
 
-  console.log(user);
-
   const [errorMessage, setErrorMessage] = useState("");
   console.log("hello");
   return (
