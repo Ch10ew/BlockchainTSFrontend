@@ -9,16 +9,31 @@ import utilStyles from "../styles/utils.module.css";
 
 export default function Requests() {
   const [user, setUser] = useAtom(userAtom);
-  const { data: incRequest } = useSWR(
+
+  const { data: incRequest, mutate: mutateInc } = useSWR(
     `http://localhost:8000/request/?toId=${user.id}&status=PENDING`
   );
   const { data: outRequest } = useSWR(
     `http://localhost:8000/request/?fromId=${user.id}&status=PENDING`
   );
-  const { data: finRequest } = useSWR(
+  const { data: finRequest, mutate: mutateFin } = useSWR(
     `http://localhost:8000/request/finished/?userId=${user.id}`
   );
-  console.log(finRequest);
+
+  const onRequestResponse = async (requestId: string, status: string) => {
+    const body = {
+      requestId,
+      status,
+    };
+    console.log(JSON.stringify(body));
+    await fetch("http://localhost:8000/request/response", {
+      headers: { "Content-Type": "application/json" },
+      method: "PUT",
+      body: JSON.stringify(body),
+    });
+    mutateInc();
+    mutateFin();
+  };
   return (
     <Layout>
       <Head>
@@ -48,7 +63,22 @@ export default function Requests() {
                       </Link>
                     </td>
                     <td>
-                      <button>Accept</button> <button>Reject</button>
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onRequestResponse(re.id, "ACCEPTED");
+                        }}
+                      >
+                        Accept
+                      </button>{" "}
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onRequestResponse(re.id, "ACCEPTED");
+                        }}
+                      >
+                        Reject
+                      </button>
                     </td>
                   </tr>
                 );
@@ -96,7 +126,6 @@ export default function Requests() {
             </tr>
             {finRequest &&
               finRequest.map((re, i) => {
-                console.log(re);
                 return (
                   <tr>
                     <td>{re.from.username}</td>
