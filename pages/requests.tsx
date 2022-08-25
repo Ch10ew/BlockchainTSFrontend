@@ -74,7 +74,7 @@ export default function Requests() {
                       <button
                         onClick={(e) => {
                           e.preventDefault();
-                          onRequestResponse(re.id, "ACCEPTED");
+                          onRequestResponse(re.id, "REJECTED");
                         }}
                       >
                         Reject
