@@ -8,10 +8,12 @@ import utilStyles from '../styles/utils.module.css';
 import useUser from '../lib/useUser';
 
 export default function Login() {
-    const { mutateUser } = useUser({
+    const { user, mutateUser } = useUser({
         redirectTo: '/someAfterLoginPage',
         redirectIfFound: true,
     });
+
+    console.log(user);
 
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -40,8 +42,6 @@ export default function Login() {
                                     headers: { 'Content-Type': 'application/json' },
                                     body: JSON.stringify(body),
                                 })).json().then(x => { return x; });
-
-                                console.log(res);
 
                                 mutateUser(
                                     await (await fetch('api/login', {

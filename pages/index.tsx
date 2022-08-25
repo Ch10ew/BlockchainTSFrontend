@@ -1,9 +1,14 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import React from 'react';
+// import { useSWRConfig } from 'swr';
 
 import Layout from '../components/layout';
 
 export default function Home() {
+    // const { cache } = useSWRConfig();
+    // (cache as any).clear();
+
     return (
         <Layout>
             <Head>

@@ -8,7 +8,7 @@ import utilStyles from '../styles/utils.module.css';
 import useUser from '../lib/useUser';
 
 export default function Signup() {
-    const { user } = useUser({
+    const { user, mutateUser } = useUser({
         redirectTo: '/someAfterLoginPage',
         redirectIfFound: true,
     });

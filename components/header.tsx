@@ -1,8 +1,12 @@
 import Link from 'next/link';
+import useUser from '../lib/useUser';
 import utilStyles from '../styles/utils.module.css';
 
 
 export default function Header() {
+    const { user, mutateUser } = useUser();
+    console.log(user);
+
     return (
         <header>
             <nav>
@@ -14,13 +18,30 @@ export default function Header() {
                             </a>
                         </Link>
                     </li>
-                    <li className={utilStyles.navbar}>
-                        <Link href="/login">
-                            <a className={utilStyles.navbar} rel="noopener noreferrer">
-                                Login
+                    {user && !(user.isLoggedIn) ? (
+                        <li className={utilStyles.navbar}>
+                            <Link href="/login">
+                                <a className={utilStyles.navbar} rel="noopener noreferrer">
+                                    Login
+                                </a>
+                            </Link>
+                        </li>
+                    ) : (
+                        <li className={utilStyles.navbar}>
+                            <a
+                                className={utilStyles.navbar}
+                                onClick={async (event) => {
+                                    event.preventDefault();
+                                    await fetch('http://localhost:8000/user/logout', {
+                                        method: 'POST',
+                                    });
+                                    mutateUser(null);
+                                }}
+                            >
+                                Logout
                             </a>
-                        </Link>
-                    </li>
+                        </li>
+                    )}
                     <li className={utilStyles.navbar}>
                         <Link href="/artworks">
                             <a className={utilStyles.navbar} rel="noopener noreferrer">
