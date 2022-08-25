@@ -29,6 +29,8 @@ export default function Login() {
           onSubmit={async function handleSubmit(event) {
             event.preventDefault();
 
+            const [errorMessage, setErrorMessage] = useState("");
+
             setErrorMessage(""); // Reset
 
             const body = {
