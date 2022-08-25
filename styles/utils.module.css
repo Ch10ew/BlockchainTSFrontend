@@ -1,6 +1,7 @@
 .center {
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 
 .row {
@@ -98,4 +99,10 @@ li a.navbar {
 
 .fileUpload {
     width: 33vmax;
+}
+
+.radio {
+    width: 1.5rem;
+    float: right;
+    margin-top: 0.8em;
 }

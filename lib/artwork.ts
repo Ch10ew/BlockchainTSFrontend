@@ -49,7 +49,6 @@ export function getAllArtworkIds() {
     });
 }
 
-
 export async function getArtworkData(id: string) {
     let artworkData = {};
     artworkNames.forEach(({ title, artist, owner }) => {

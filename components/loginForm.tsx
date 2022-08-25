@@ -2,7 +2,7 @@ import { FormEvent } from 'react';
 
 import utilStyles from '../styles/utils.module.css';
 
-export default function Form({
+export default function LoginForm({
     errorMessage,
     onSubmit,
 }: {

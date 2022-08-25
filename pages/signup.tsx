@@ -3,52 +3,57 @@ import Head from 'next/head';
 import { useState } from 'react';
 
 import Layout from '../components/layout';
-import LoginForm from '../components/loginForm';
+import SignupForm from '../components/signupForm';
 import utilStyles from '../styles/utils.module.css';
 import useUser from '../lib/useUser';
 
-export default function Login() {
-    const { mutateUser } = useUser({
+export default function Signup() {
+    const { user } = useUser({
         redirectTo: '/someAfterLoginPage',
         redirectIfFound: true,
     });
+
+    console.log(user);
 
     const [errorMessage, setErrorMessage] = useState('');
 
     return (
         <Layout>
             <Head>
-                <title>BlockchainTS | Login</title>
+                <title>BlockchainTS | Signup</title>
             </Head>
-            <div className='login'>
-                <LoginForm
+            <div className='signup'>
+                <SignupForm
                     errorMessage={errorMessage}
                     onSubmit={
                         async function handleSubmit(event) {
                             event.preventDefault();
+
+                            if (event.currentTarget.password.value !== event.currentTarget.confirmPassword.value) {
+                                setErrorMessage('Password does not match');
+                                return;
+                            }
+
+                            if (event.currentTarget.userType.value === '') {
+                                setErrorMessage('User type not selected');
+                                return;
+                            }
 
                             setErrorMessage(''); // Reset
 
                             const body = {
                                 username: event.currentTarget.username.value,
                                 password: event.currentTarget.password.value,
+                                userType: event.currentTarget.userType.value,
                             };
 
                             try {
-                                const res = await (await fetch('http://localhost:8000/user/login', {
-                                    method: 'POST',
-                                    headers: { 'Content-Type': 'application/json' },
-                                    body: JSON.stringify(body),
-                                })).json().then(x => { return x; });
-
-                                console.log(res);
-
                                 mutateUser(
-                                    await (await fetch('api/login', {
+                                    await (await fetch('http://localhost:8000/user/signup', {
                                         method: 'POST',
                                         headers: { 'Content-Type': 'application/json' },
-                                        body: JSON.stringify(res),
-                                    })).json().then(x => { return x; }),
+                                        body: JSON.stringify(body),
+                                    })).json(),
                                     false,
                                 );
                             }
@@ -60,8 +65,8 @@ export default function Login() {
                     }
                 />
                 <p className={utilStyles.center}>
-                    Dont have an account?{' '}
-                    <Link href='/signup'>Sign Up</Link>
+                    Already have an account?{' '}
+                    <Link href='/login'>Login</Link>
                 </p>
             </div>
         </Layout>
