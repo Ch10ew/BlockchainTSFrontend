@@ -25,11 +25,8 @@ export default function Artwork({ artworkData }) {
                     <h2>{artworkData.title}</h2>
                     <p>by {artworkData.artist}</p>
                     <br />
-                    {artworkData.owner === '' ?
-                        <button>Buy</button>
-                        :
-                        <p>Owned by: {artworkData.owner}</p>
-                    }
+                    <p>Owned by: {artworkData.owner}</p>
+                    <button>Request to Buy</button>
                 </div>
             </div>
         </Layout>

@@ -8,17 +8,17 @@ const artworkNames = [
     {
         title: 'Le Fishe au Chocolat',
         artist: 'Ricey',
-        owner: '',
+        owner: 'Ricey',
     },
     {
         title: 'Node Modules',
         artist: 'Chew',
-        owner: '',
+        owner: 'Chew',
     },
     {
         title: 'Ganyu',
         artist: 'Ricey',
-        owner: '',
+        owner: 'Ricey',
     },
 ];
 
