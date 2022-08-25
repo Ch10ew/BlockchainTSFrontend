@@ -54,6 +54,8 @@ export default function Signup() {
                                     })).json(),
                                     false,
                                 );
+
+                                setErrorMessage('Success');
                             }
                             catch (error) {
                                 console.error('An unexpected error happened: ', error);
