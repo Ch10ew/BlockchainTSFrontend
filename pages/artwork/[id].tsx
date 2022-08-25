@@ -20,6 +20,7 @@ export default function Artwork() {
     `http://localhost:8000/request/cert/${id}`,
     fetchJson
   );
+
   return (
     <Layout>
       <Head>

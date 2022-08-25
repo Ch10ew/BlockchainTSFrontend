@@ -1,5 +1,8 @@
-import React from 'react';
+import { atom } from "jotai";
 
-const userContext = React.createContext({ user: {} });
-
-export { userContext };
+export const userAtom = atom({
+  id: "",
+  username: "",
+  userType: "",
+  loggedIn: false,
+});
