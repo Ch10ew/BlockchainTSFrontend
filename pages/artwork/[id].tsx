@@ -54,7 +54,7 @@ export default function Artwork() {
 
                   // @TODO: check for duplicate request (or handle this in backend)
 
-                  const res = await await fetchJson(
+                  const res = await fetchJson(
                     "http://localhost:8000/request",
                     {
                       method: "POST",
