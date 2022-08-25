@@ -47,7 +47,7 @@ export default function Header() {
                     });
                   }}
                 >
-                  Logout
+                  Logout ({user.username})
                 </a>
               </li>
               <li className={utilStyles.navbar}>
