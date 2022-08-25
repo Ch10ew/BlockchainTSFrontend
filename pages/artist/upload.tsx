@@ -9,7 +9,7 @@ export default function Upload() {
             <Head>
                 <title>BlockchainTS | Upload</title>
             </Head>
-            <div className={utilStyles.flex}>
+            <div className={utilStyles.column}>
                 <input className={`${utilStyles.fileUpload} ${utilStyles.center}`} type="file" name="image" />
                 <br />
                 <button className={utilStyles.center} type="submit">
