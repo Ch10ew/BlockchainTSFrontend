@@ -9,7 +9,30 @@ export default function Transactions() {
                 <title>BlockchainTS | Transactions</title>
             </Head>
             <div>
-                <p>Transaction records go here.</p>
+                <table>
+                    <tr>
+                        <th>
+                            From
+                        </th>
+                        <th>
+                            To
+                        </th>
+                        <th>
+                            Artwork
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Test Entry 1
+                        </td>
+                        <td>
+                            Test Entry 2
+                        </td>
+                        <td>
+                            Test Entry 3
+                        </td>
+                    </tr>
+                </table>
             </div>
         </Layout>
     );

@@ -156,15 +156,16 @@ table {
 td,
 th {
     border: 1px solid black;
-    padding: 14px;
+    padding: 8px;
+    font-size: 16px;
 }
 
 th {
     font-family: 'Courier New', monospace;
-    font-size: 26px;
-    background-color: black;
+    font-size: 18px;
+    background-color: #333;
     color: white;
-    padding-left: 40px;
+    padding-left: 20px;
 }
 
 form {

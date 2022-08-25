@@ -3,10 +3,23 @@
     margin-right: auto;
 }
 
-.flex {
+.row {
     display: flex;
-    flex-flow: column wrap;
-    padding: 0 0 1rem 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+.item {
+    flex: 1;
+    margin: 0 1rem 1rem 1rem;
 }
 
 .lightText {
