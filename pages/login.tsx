@@ -8,7 +8,7 @@ import utilStyles from "../styles/utils.module.css";
 import useUser from "../lib/useUser";
 import fetchJson from "../lib/fetchJson";
 import { userAtom } from "../context/userContext";
-import { useAtom } from "jotai";
+import { atom, useAtom } from "jotai";
 import Router, { useRouter } from "next/router";
 
 export default function Login() {
@@ -16,7 +16,8 @@ export default function Login() {
   const router = useRouter();
   console.log(user);
 
-  const [errorMessage, setErrorMessage] = useState("");
+  const errorAtom = atom('');
+  const [errorMessage, setErrorMessage] = useAtom(errorAtom);
 
   return (
     <Layout>

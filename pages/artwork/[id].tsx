@@ -1,3 +1,4 @@
+import { useAtom } from "jotai";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -5,10 +6,12 @@ import useSWR from "swr";
 import Cert from "../../components/cert";
 
 import Layout from "../../components/layout";
+import { userAtom } from "../../context/userContext";
 import fetchJson from "../../lib/fetchJson";
 import utilStyles from "../../styles/utils.module.css";
 
 export default function Artwork() {
+  const [user, setUser] = useAtom(userAtom);
   const router = useRouter();
   const { id } = router.query;
 
@@ -16,6 +19,7 @@ export default function Artwork() {
     `http://localhost:8000/artwork/${id}`,
     fetchJson
   );
+
   const { data: transaction } = useSWR<any>(
     `http://localhost:8000/request/cert/${id}`,
     fetchJson
@@ -42,8 +46,33 @@ export default function Artwork() {
             <h2>{artwork.label}</h2>
             <p>by {artwork.artist?.username}</p>
             <br />
-            <p>Owned by: {artwork.owner?.username}</p>
-            <button>Request to Buy</button>
+            <p>Owned by: {transaction?.data?.to.username}</p>
+            {user && user.loggedIn ? (
+              <button
+                onClick={async (event) => {
+                  event.preventDefault();
+
+                  // @TODO: check for duplicate request (or handle this in backend)
+
+                  const res = await await fetchJson(
+                    "http://localhost:8000/request",
+                    {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        artworkId: id,
+                        buyerId: user.id,
+                      }),
+                    }
+                  );
+                }}
+              >
+                Request to Buy
+              </button>
+            ) : (
+              <p>Please login to request to buy</p>
+            )}
+
           </div>
         </div>
       )}
