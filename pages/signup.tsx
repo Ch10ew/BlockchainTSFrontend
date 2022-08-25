@@ -19,7 +19,7 @@ export default function Signup() {
   console.log(user);
 
   const [errorMessage, setErrorMessage] = useState("");
-
+  console.log("hello");
   return (
     <Layout>
       <Head>
