@@ -1,7 +1,8 @@
-import { useAtom } from "jotai";
+import { atom, useAtom } from "jotai";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import useSWR from "swr";
 import Cert from "../../components/cert";
 
@@ -14,6 +15,8 @@ export default function Artwork() {
   const [user, setUser] = useAtom(userAtom);
   const router = useRouter();
   const { id } = router.query;
+
+  const [proofMessage, setProofMessage] = useState('...');
 
   const { data: artwork, error } = useSWR<any>(
     `http://localhost:8000/artwork/${id}`,
@@ -79,6 +82,24 @@ export default function Artwork() {
       {transaction && (
         <Cert transaction={transaction.data} artwork={artwork}></Cert>
       )}
+      <div className={utilStyles.column}>
+        <p className={utilStyles.center}>{proofMessage}</p>
+        <button
+          className={utilStyles.center}
+          onClick={async (event) => {
+            event.preventDefault();
+
+            const res = await fetchJson(`http://localhost:8000/request/proof/${transaction.id}`, {
+              headers: { "Content-Type": "application/json" },
+              method: "GET",
+            });
+
+            setProofMessage(res && (res as any).isValid ? 'Valid' : 'Invalid');
+          }}
+        >
+          Request Proof from Server
+        </button>
+      </div>
     </Layout>
   );
 }
