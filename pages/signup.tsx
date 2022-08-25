@@ -13,8 +13,6 @@ export default function Signup() {
         redirectIfFound: true,
     });
 
-    console.log(user);
-
     const [errorMessage, setErrorMessage] = useState('');
 
     return (
@@ -58,7 +56,7 @@ export default function Signup() {
                                 );
                             }
                             catch (error) {
-                                console.log('An unexpected error happened: ', error);
+                                console.error('An unexpected error happened: ', error);
                                 setErrorMessage('' + error);
                             }
                         }

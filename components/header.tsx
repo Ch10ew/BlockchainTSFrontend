@@ -5,7 +5,6 @@ import utilStyles from '../styles/utils.module.css';
 
 export default function Header() {
     const { user, mutateUser } = useUser();
-    console.log(user);
 
     return (
         <header>

@@ -106,3 +106,7 @@ li a.navbar {
     float: right;
     margin-top: 0.8em;
 }
+
+.cert * {
+    font-family: 'Times New Roman', Times, serif !important;
+}

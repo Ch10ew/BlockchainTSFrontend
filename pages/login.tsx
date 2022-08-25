@@ -13,8 +13,6 @@ export default function Login() {
         redirectIfFound: true,
     });
 
-    console.log(user);
-
     const [errorMessage, setErrorMessage] = useState('');
 
     return (
@@ -53,7 +51,7 @@ export default function Login() {
                                 );
                             }
                             catch (error) {
-                                console.log('An unexpected error happened: ', error);
+                                console.error('An unexpected error happened: ', error);
                                 setErrorMessage('' + error);
                             }
                         }
