@@ -24,14 +24,6 @@ export default function Home() {
                         <a>All transactions can be viewed here</a>
                     </Link>.
                 </h2>
-                <br />
-                <Link href="./artist/upload">
-                    <a>(Temporary) Artist Upload page</a>
-                </Link>
-                <br />
-                <Link href="./requests">
-                    <a>(Temporary) Requests page</a>
-                </Link>
             </div>
         </Layout>
     );

@@ -30,25 +30,47 @@ export default function Header() {
               </Link>
             </li>
           ) : (
-            <li className={utilStyles.navbar}>
-              <a
-                className={utilStyles.navbar}
-                onClick={async (event) => {
-                  event.preventDefault();
-                  await fetch("http://localhost:8000/user/logout", {
-                    method: "POST",
-                  });
-                  setUser({
-                    loggedIn: false,
-                    username: "",
-                    userType: "",
-                    id: "",
-                  });
-                }}
-              >
-                Logout
-              </a>
-            </li>
+            <>
+              <li className={utilStyles.navbar}>
+                <a
+                  className={utilStyles.navbar}
+                  onClick={async (event) => {
+                    event.preventDefault();
+                    await fetch("http://localhost:8000/user/logout", {
+                      method: "POST",
+                    });
+                    setUser({
+                      loggedIn: false,
+                      username: "",
+                      userType: "",
+                      id: "",
+                    });
+                  }}
+                >
+                  Logout
+                </a>
+              </li>
+              <li className={utilStyles.navbar}>
+                <Link href="/requests">
+                  <a className={utilStyles.navbar} rel="noopener noreferrer">
+                    Requests
+                  </a>
+                </Link>
+              </li>
+              {user.userType.localeCompare("ARTIST") === 0 ? (
+                <li className={utilStyles.navbar}>
+                  <Link href="/artist/upload">
+                    <a className={utilStyles.navbar} rel="noopener noreferrer">
+                      Upload
+                    </a>
+                  </Link>
+                </li>
+              ) : (
+                <>
+                </>
+              )
+              }
+            </>
           )}
           <li className={utilStyles.navbar}>
             <Link href="/artworks">
@@ -66,6 +88,6 @@ export default function Header() {
           </li>
         </ul>
       </nav>
-    </header>
+    </header >
   );
 }
