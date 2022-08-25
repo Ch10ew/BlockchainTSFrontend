@@ -28,6 +28,13 @@ export default function Header() {
                             </a>
                         </Link>
                     </li>
+                    <li className={utilStyles.navbar}>
+                        <Link href="/transactions">
+                            <a className={utilStyles.navbar} rel="noopener noreferrer">
+                                Transactions
+                            </a>
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </header>

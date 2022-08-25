@@ -11,16 +11,16 @@ export default function Form({
 }) {
     return (
         <form onSubmit={onSubmit}>
-            <label className={utilStyles.centerFlex}>
+            <label className={utilStyles.center}>
                 <span>Username</span>
                 <input type='text' name='username' required />
                 <span>Password</span>
                 <input type='password' name='password' required />
             </label>
 
-            <button className={utilStyles.centerFlex} type='submit'>Login</button>
+            <button className={utilStyles.center} type='submit'>Login</button>
 
-            {errorMessage && <p className={`error ${utilStyles.centerFlex}`}>{errorMessage}</p>}
+            {errorMessage && <p className={`error ${utilStyles.center}`}>{errorMessage}</p>}
         </form>
     );
 }

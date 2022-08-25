@@ -23,6 +23,7 @@ main {
 a {
     color: #0070f3;
     text-decoration: none;
+    font-size: inherit;
 }
 
 a:hover {
@@ -115,7 +116,7 @@ button {
     display: inline-block;
     padding: 8px 22px;
     overflow: hidden;
-    width: 8rem;
+    width: fit-content;
 }
 
 button:hover {
