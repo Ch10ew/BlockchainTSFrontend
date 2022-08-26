@@ -17,7 +17,7 @@ export default function Signup() {
   const router = useRouter();
 
   const [errorMessage, setErrorMessage] = useState("");
-  console.log("hello");
+
   return (
     <Layout>
       <Head>
@@ -57,7 +57,7 @@ export default function Signup() {
                 body: JSON.stringify(body),
               }).then((x) => router.push("/login"));
             } catch (error) {
-              console.log("An unexpected error happened: ", error);
+              console.error("An unexpected error happened: ", error);
               setErrorMessage("" + error);
             }
           }}

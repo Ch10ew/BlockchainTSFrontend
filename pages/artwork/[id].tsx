@@ -89,8 +89,6 @@ export default function Artwork() {
           onClick={async (event) => {
             event.preventDefault();
 
-            console.log(transaction);
-
             const res = await fetchJson(`http://localhost:8000/request/proof/${transaction.data.id}`, {
               headers: { "Content-Type": "application/json" },
               method: "GET",

@@ -14,7 +14,7 @@ import Router, { useRouter } from "next/router";
 export default function Login() {
   const [user, setUser] = useAtom(userAtom);
   const router = useRouter();
-  console.log(user);
+
 
   const errorAtom = atom('');
   const [errorMessage, setErrorMessage] = useAtom(errorAtom);
@@ -46,7 +46,7 @@ export default function Login() {
                   body: JSON.stringify(body),
                 }
               );
-              console.log(res);
+
               if (res) {
                 // @ts-ignore
                 setUser({
@@ -56,7 +56,7 @@ export default function Login() {
                 router.push("/");
               }
             } catch (error) {
-              console.log("An unexpected error happened: ", error);
+              console.error("An unexpected error happened: ", error);
               setErrorMessage("" + error);
             }
           }}

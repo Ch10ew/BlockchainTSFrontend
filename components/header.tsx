@@ -8,7 +8,6 @@ import utilStyles from "../styles/utils.module.css";
 export default function Header() {
   const [user, setUser] = useAtom(userAtom);
   const router = useRouter();
-  console.log(user);
 
   return (
     <header>
